@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_addfront.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 23:40:01 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/11/24 09:43:54 by akuzmin          ###   ########.fr       */
+/*   Created: 2024/12/12 01:32:50 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_node_list	*ft_addfront(t_node_list *new, t_node_list *lst)
 {
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	if (!new)
+		return (lst);
+	new->next = lst;
+	if (lst)
+		lst->previou = new;
+	return (new);
 }

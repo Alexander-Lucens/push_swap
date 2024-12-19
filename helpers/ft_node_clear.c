@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_node_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:40:01 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/11/24 09:43:54 by akuzmin          ###   ########.fr       */
+/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_node_clear(t_node_list **lst)
 {
-	int	nodec;
+	t_node_list	*temp;
 
-	nodec = 0;
-	while (lst != NULL)
+	if (!lst || !*lst)
+		return ;
+	while (*lst != NULL)
 	{
-		nodec++;
-		lst = lst->next;
+		temp = (*lst)->next;
+		free(*lst);
+		*lst = temp;
 	}
-	return (nodec);
 }

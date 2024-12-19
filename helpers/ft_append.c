@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_append.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 23:40:01 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/11/24 09:43:53 by akuzmin          ###   ########.fr       */
+/*   Created: 2024/11/08 09:14:21 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_append(t_node_list **lst, t_node_list *new)
 {
-	t_list	*new;
+	t_node_list	*ex;
+	t_node_list	*prev;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	ex = *lst;
+	prev = NULL;
+	while (ex->next != NULL)
+	{
+		prev = ex;
+		ex = ex->next;
+		ex->previou = prev;
+	}
+	ex->next = new;
 }

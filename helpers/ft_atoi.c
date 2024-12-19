@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/11/24 09:43:53 by akuzmin          ###   ########.fr       */
+/*   Created: 2024/11/07 21:28:00 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+long long	ft_atoi(const char *str)
 {
-	size_t	i;
+	int			sign;
+	long long	out;
+	int			i;
 
+	sign = 1;
+	out = 0;
 	i = 0;
-	if (dstsize != 0)
-	{
-		while (src[i] != '\0' && i < dstsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	while (src[i] != '\0')
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	return (i);
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		out = out * 10 + (str[i] - '0');
+		i++;
+	}
+	return (out * sign);
 }

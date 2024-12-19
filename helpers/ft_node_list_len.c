@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_node_list_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 23:40:01 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/11/24 09:43:54 by akuzmin          ###   ########.fr       */
+/*   Created: 2024/12/11 22:21:23 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int	ft_node_list_len(t_node_list *lst)
 {
-	while (lst != NULL)
+	int			i;
+	t_node_list	*temp;
+
+	i = 0;
+	temp = lst;
+	while (temp)
 	{
-		f(lst->content);
-		lst = lst->next;
+		temp = temp->next;
+		i++;
 	}
+	return (i);
 }

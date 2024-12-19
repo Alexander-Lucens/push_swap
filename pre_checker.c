@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 23:39:31 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/11/24 09:43:54 by akuzmin          ###   ########.fr       */
+/*   Created: 2024/12/11 21:42:23 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:35 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isalpha(int c)
+int	check_duplications(t_node_list *list)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
+	t_node_list	*tmp;
+	t_node_list	*tmp2;
+
+	tmp = list;
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp->number == tmp2->number)
+				return (1);
+			tmp2 = tmp2->next;
+		}
+		tmp = tmp->next;
+	}
 	return (0);
 }

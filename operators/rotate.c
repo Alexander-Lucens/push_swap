@@ -1,36 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 21:42:23 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:35 by akuzmin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	rotate(int *s)
+void	rotate(t_node_list	**stack)
 {
-	int	*temp;
-	size_t len;
-	size_t i;
+    t_node_list	*first;
+    t_node_list	*last;
 
-	len = ft_numlistlen(s);
-	temp = malloc(sizeof(int) * (len + 1));
-	if (!temp)
-		return (NULL);
-	temp[len] = NULL;
-	temp[len - 1] = s[0];
-	i = 0;
-	while (i < len -1)
-		temp[i] = s[i + 1];
-	free(s);
-	s = temp;
+    if (ft_node_list_len(*stack) > 1)
+    {
+        first = *stack;
+        last = *stack;
+        while (last->next)
+            last = last->next;
+        *stack = first->next;
+        (*stack)->previou = NULL;
+        first->next = NULL;
+        last->next = first;
+        first->previou = last;
+    }
 }
 
-void	ra(int *a)
+void	ra(t_stack *stack)
 {
-	rotate(a);
+    rotate(&stack->a);
+    write(1, "ra\n", 3);
 }
 
-void	rb(int *b)
+void	rb(t_stack *stack)
 {
-	rotate(b);
+    rotate(&stack->b);
+    write(1, "rb\n", 3);
 }
 
-void	rr(int *a, int *b)
+void	rr(t_stack *stack)
 {
-	rotate(a);
-	rotate(b);
+	rotate(&stack->a);
+    rotate(&stack->b);
+	write(1, "rr\n", 3);
 }

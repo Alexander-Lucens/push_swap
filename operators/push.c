@@ -1,29 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 21:42:23 by akuzmin           #+#    #+#             */
+/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-/**
- * s1 - list where we grab fircs char and pushing in to s2
- * s2 - destenation list
- * if s1 in empty do nothing
- * s1 - from s2 - to
- */
-void	push(int *s1, int *s2)
+void	pb(t_stack *stack)
 {
-	int temp;
+    t_node_list	*temp;
 
-	if (ft_numlistlen(s1) > 0)
-	{
-		temp = s1[0];
-		s1 = ft_sublist(s1, 1);
-		s2 = ft_addfront(temp, s2);
-	}
+    if (ft_node_list_len(stack->a) > 0)
+    {
+        temp = stack->a;
+        stack->a = stack->a->next;
+        if (stack->a)
+            stack->a->previou = NULL;
+        temp->next = NULL;
+        stack->b = ft_addfront(temp, stack->b);
+    }
+    write(1, "pb\n", 3);
 }
 
-void	pb(int *a, int *b)
+void	pa(t_stack *stack)
 {
-	push(a, b);
-}
+    t_node_list	*temp;
 
-void	pa(int *a, int *b)
-{
-	push(b, a);
+    if (ft_node_list_len(stack->b) > 0)
+    {
+        temp = stack->b;
+        stack->b = stack->b->next;
+        if (stack->b)
+            stack->b->previou = NULL;
+        temp->next = NULL;
+        stack->a = ft_addfront(temp, stack->a);
+    }
+    write(1, "pa\n", 3);
 }
