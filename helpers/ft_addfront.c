@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 01:32:50 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/08 21:58:54 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ t_node_list	*ft_addfront(t_node_list *new, t_node_list *lst)
 		return (lst);
 	new->next = lst;
 	if (lst)
-		lst->previou = new;
+		lst->prev = new;
 	return (new);
 }

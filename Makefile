@@ -1,37 +1,67 @@
 NAME = push_swap
+CHECKER = checker
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-CC = gcc
+OPERATORS = \
+    ./operators/swap.c \
+    ./operators/push.c \
+    ./operators/rotate.c \
+    ./operators/rotate_reverse.c
 
-CFLAGS = -Wall -Wextra -Werror -g
+HELPERS = \
+    ./helpers/for_main.c \
+    ./helpers/ft_addfront.c \
+    ./helpers/ft_append.c \
+    ./helpers/ft_atoi.c \
+    ./helpers/ft_node_clear.c \
+    ./helpers/ft_node_list_len.c \
+    ./helpers/ft_split.c
 
-OPERATORS = ./operators/swap.c ./operators/push.c ./operators/rotate.c ./operators/rotate_reverse.c
+SORTING = \
+    ./sorting/algorithms.c \
+    ./sorting/solution.c \
+    ./sorting/lucens.c \
+    ./sorting/manipulations.c \
+    ./indexing.c
 
-HELPERS = ./helpers/for_main.c ./helpers/ft_addfront.c ./helpers/ft_append.c ./helpers/ft_atoi.c\
-			./helpers/ft_node_clear.c ./helpers/ft_node_list_len.c ./helpers/ft_split.c
+GNL = \
+    ./gnl/get_next_line.c \
+    ./gnl/get_next_line_utils.c
 
-SORTING = ./sorting/algorithms.c ./sorting/check_solution.c
+BONUS_FILES = \
+    $(OPERATORS) \
+    $(HELPERS) \
+    $(SORTING) \
+    $(GNL) \
+    ./checker.c \
+    ./ps_main.c
 
-SRC = $(OPERATORS) $(HELPERS) $(SORTING) ./pre_checker.c ./main.c
+MANDATORY_FILES = \
+    $(OPERATORS) \
+    $(HELPERS) \
+    $(SORTING) \
+    ./ps_main.c \
+    ./main.c
 
-OBJ = $(SRC:.c=.o)
-BONUS_OBJ = $(BONUS:.c=.o)
-LIBC = ar rcs
+OBJ = $(MANDATORY_FILES:.c=.o)
+BONUS_OBJ = $(BONUS_FILES:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	    $(CC) $(CFLAGS) -o $(NAME) $(OBJ) 
+
+bonus: $(BONUS_OBJ)
+	    $(CC) $(CFLAGS) -o $(CHECKER) $(BONUS_OBJ)
 
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	    rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	    rm -f $(NAME) $(CHECKER)
 
-re: fclean all
-	clean
+re: fclean all bonus
+	    rm -f $(OBJ) $(BONUS_OBJ)
 
-ref: fclean all
-	rm -f $(OBJ) $(BONUS_OBJ)
-
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

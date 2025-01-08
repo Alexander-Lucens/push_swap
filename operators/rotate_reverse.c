@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:42:23 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/08 21:58:54 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 void	reverse_rotate(t_node_list **stack)
 {
-    t_node_list	*first;
-    t_node_list	*last;
+	t_node_list	*current;
+	t_node_list	*prev;
 
-    if (ft_node_list_len(*stack) > 1)
-    {
-        first = *stack;
-        last = *stack;
-        while (last->next)
-            last = last->next;
-        last->previou->next = NULL;
-        last->previou = NULL;
-        last->next = first;
-        first->previou = last;
-        *stack = last;
-    }
+	if (!stack || !(*stack) || !(*stack)->next)
+		return ;
+	current = *stack;
+	prev = NULL;
+	while (current->next)
+	{
+		prev = current;
+		current = current->next;
+	}
+	if (prev)
+		prev->next = NULL;
+	current->next = *stack;
+	(*stack)->prev = current;
+	*stack = current;
+	current->prev = NULL;
 }
 
 void	rra(t_stack *stack)

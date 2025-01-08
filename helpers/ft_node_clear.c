@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:40:01 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/12/18 21:29:36 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/08 22:41:04 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_node_clear(t_node_list **lst)
 	while (*lst != NULL)
 	{
 		temp = (*lst)->next;
+		if ((*lst)->moves)
+			free((*lst)->moves);
 		free(*lst);
 		*lst = temp;
 	}

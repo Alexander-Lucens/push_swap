@@ -1,75 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_solution.c                                   :+:      :+:    :+:   */
+/*   solution.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:52:39 by akuzmin           #+#    #+#             */
-/*   Updated: 2024/12/19 19:44:02 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/08 22:22:30 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	check_order(t_node_list *list)
+void	optimal_move(t_stack *stack)
 {
-	t_node_list	*temp;
+	int			min_moves;
+	t_node_list	*best;
 
-	temp = list;
-	while (temp->next != NULL)
-	{
-		if (temp->number > temp->next->number)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
+	min_moves = get_min_moves(stack);
+	best = get_best_node(stack, min_moves);
+	execute_moves(stack, best);
 }
 
-int	reverse_order(t_node_list *list)
+void	split_stack(t_stack *stack)
 {
-	t_node_list	*temp;
-
-	temp = list;
-	while (temp->next)
-	{
-		if (temp->number < temp->next->number)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
-}
-
-int minimum(t_node_list *list)
-{
-	t_node_list	*temp;
 	int	min;
-
-	temp = list;
-	min = temp->number;
-	while (temp->next)
-	{
-		if (temp->number < min)
-			min = temp->number;
-		temp = temp->next;
-	}
-	return (min);
-}
-
-int maximum(t_node_list *list)
-{
-	t_node_list	*temp;
 	int	max;
+	int	mid;
 
-	temp = list;
-	max = temp->number;
-	while (temp->next)
+	min = min_index(stack->a);
+	max = max_index(stack->a);
+	mid = (min + max) / 2;
+	while (ft_node_list_len(stack->a) > 3)
 	{
-		if (temp->number > max)
-			max = temp->number;
-		temp = temp->next;
+		if (stack->a->index == max || stack->a->index == mid \
+		|| stack->a->index == min)
+			ra(stack);
+		else if (stack->a->index <= mid)
+			pb(stack);
+		else
+		{
+			pb(stack);
+			rb(stack);
+		}
 	}
-	return (max);
 }
 
 void	solution(t_stack *stack)
@@ -81,5 +55,5 @@ void	solution(t_stack *stack)
 	else if (ft_node_list_len(stack->a) >= 3 && ft_node_list_len(stack->a) <= 6)
 		dump_sort(stack);
 	else if (ft_node_list_len(stack->a) > 6)
-		radix_sort(stack);
+		lucens(stack);
 }
