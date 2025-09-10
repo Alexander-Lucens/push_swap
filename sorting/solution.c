@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:52:39 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/01/08 22:22:30 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/09 09:27:15 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	split_stack(t_stack *stack)
 void	solution(t_stack *stack)
 {
 	if (check_order(stack->a) && !stack->b)
-		return (write(1, "\n", 1), free(stack->a), free(stack->b), exit(0));
+		return ;
 	if (ft_node_list_len(stack->a) == 2)
 		sa(stack);
 	else if (ft_node_list_len(stack->a) >= 3 && ft_node_list_len(stack->a) <= 6)

@@ -6,13 +6,13 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:42:23 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/01/08 21:58:54 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/09 14:23:20 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	pb(t_stack *stack)
+void	push_b(t_stack *stack)
 {
 	t_node_list	*temp;
 
@@ -25,10 +25,9 @@ void	pb(t_stack *stack)
 		temp->next = NULL;
 		stack->b = ft_addfront(temp, stack->b);
 	}
-	write(1, "pb\n", 3);
 }
 
-void	pa(t_stack *stack)
+void	push_a(t_stack *stack)
 {
 	t_node_list	*temp;
 
@@ -41,5 +40,16 @@ void	pa(t_stack *stack)
 		temp->next = NULL;
 		stack->a = ft_addfront(temp, stack->a);
 	}
+}
+
+void	pb(t_stack *stack)
+{
+	push_b(stack);
+	write(1, "pb\n", 3);
+}
+
+void	pa(t_stack *stack)
+{
+	push_a(stack);
 	write(1, "pa\n", 3);
 }

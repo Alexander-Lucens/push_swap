@@ -6,65 +6,49 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:17:53 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/01/08 23:17:26 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/09 14:23:31 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	execute_rotations(char *line, t_stack *stack)
 {
-	while (*s1 && *s2 && *s1 == *s2)
+	if (!ft_strcmp(line, "ra"))
+		rotate(&stack->a);
+	else if (!ft_strcmp(line, "rb"))
+		rotate(&stack->b);
+	else if (!ft_strcmp(line, "rr"))
 	{
-		s1++;
-		s2++;
+		rotate(&stack->a);
+		rotate(&stack->b);
 	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
-}
-
-static char	*trim_newline(char *dest)
-{
-	int	i;
-
-	i = 0;
-	while (dest && dest[i])
+	else if (!ft_strcmp(line, "rra"))
+		reverse_rotate(&stack->a);
+	else if (!ft_strcmp(line, "rrb"))
+		reverse_rotate(&stack->b);
+	else if (!ft_strcmp(line, "rrr"))
 	{
-		if (dest[i] == '\n')
-		{
-			dest[i] = '\0';
-			break ;
-		}
-		i++;
+		reverse_rotate(&stack->a);
+		reverse_rotate(&stack->b);
 	}
-	return (dest);
+	else
+		return (0);
+	return (1);
 }
 
 int	execute_operation(char *line, t_stack *stack)
 {
 	if (!ft_strcmp(line, "sa"))
-		sa(stack);
+		swap(&stack->a);
 	else if (!ft_strcmp(line, "sb"))
-		sb(stack);
-	else if (!ft_strcmp(line, "ss"))
-		ss(stack);
+		swap(&stack->b);
 	else if (!ft_strcmp(line, "pa"))
-		pa(stack);
+		push_a(stack);
 	else if (!ft_strcmp(line, "pb"))
-		pb(stack);
-	else if (!ft_strcmp(line, "ra"))
-		ra(stack);
-	else if (!ft_strcmp(line, "rb"))
-		rb(stack);
-	else if (!ft_strcmp(line, "rr"))
-		rr(stack);
-	else if (!ft_strcmp(line, "rra"))
-		rra(stack);
-	else if (!ft_strcmp(line, "rrb"))
-		rrb(stack);
-	else if (!ft_strcmp(line, "rrr"))
-		rrr(stack);
+		push_b(stack);
 	else
-		return (0);
+		return (execute_rotations(line, stack));
 	return (1);
 }
 

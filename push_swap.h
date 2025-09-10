@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:58:54 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/01/08 22:23:03 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/09 14:21:25 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void		ss(t_stack *stack);
 /* push.c */
 void		pb(t_stack *stack);
 void		pa(t_stack *stack);
+void		push_b(t_stack *stack);
+void		push_a(t_stack *stack);
 
 /* rotate.c */
 void		rotate(t_node_list **stack);
@@ -116,6 +118,8 @@ void		optimal_move(t_stack *stack);
 void		solution(t_stack *stack);
 
 /* indexing.c */
+int			ft_strcmp(const char *s1, const char *s2);
+char		*trim_newline(char *dest);
 void		index_stack(t_stack *stack);
 
 /* gnl */

@@ -6,7 +6,7 @@
 /*   By: akuzmin <akuzmin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:42:23 by akuzmin           #+#    #+#             */
-/*   Updated: 2025/01/08 23:17:34 by akuzmin          ###   ########.fr       */
+/*   Updated: 2025/01/09 14:28:43 by akuzmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	main(int ac, char **av)
 		stack.a = process_args(av + 1);
 	if (!stack.a || check_duplications(stack.a))
 		return (ft_node_clear(&stack.a), error(), -1);
-	if (check_order(stack.a) && stack.b == NULL)
-		return (0);
 	index_stack(&stack);
 	solution(&stack);
 	ft_node_clear(&stack.a);
@@ -48,8 +46,8 @@ int	main(int ac, char **av)
  * shuf -i 0-1000 -n 100 | tr '\n' ' '
  * ARG=$(gshuf -i 0-1000 -n 100 | tr '\n' ' '); ./checker $ARG
  * ARG=$(gshuf -i 0-1000 -n 500 | tr '\n' ' '); ./checker $ARG
- * ARG=$(gshuf -i 0-1000 -n 100 | tr '\n' ' '); ./push_swap $ARG
- * ARG=$(gshuf -i 0-1000 -n 500 | tr '\n' ' '); ./push_swap $ARG
+ * ARG=$(shuf -i 0-1000 -n 100 | tr '\n' ' '); ./push_swap $ARG | ./checker $ARG
+ * ARG=$(shuf -i 0-1000 -n 500 | tr '\n' ' '); ./push_swap $ARG | ./checker $ARG
  * 
  * gshuf -i 0-1000 -n 100 | tr '\n' ' '  		// for mac
  * ARG=$(gshuf -i 0-1000 -n 100 | tr '\n' ' '); ./checker $ARG
