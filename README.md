@@ -14,6 +14,7 @@ This repository contains:
 ⸻
 
 ## ⚙️ Features
+
 	•	Sorting with a limited set of stack operations:
 	•	sa, sb, ss → swap top elements
 	•	pa, pb → push between stacks
